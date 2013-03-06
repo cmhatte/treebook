@@ -1,0 +1,67 @@
+CRUD Create Read UPdate Delete
+
+hash  = Series of key value pairs (associative array???)
+b = { :status => "I just ate some delicious brains", :zombie => "Jim" }
+puts b[:status]      "I just ate some delicious brains"
+puts b[:zombie]	     "Jim"
+puts b[:zombie] + " said " + b[:status]    "Jim said I just ate some delicious brains"
+
+t = Tweet.find(3)
+puts t[:id]
+puts t[:status]
+puts t[:zombie]
+BETTER WAY
+puts t.id
+puts t.status
+puts t.zombie
+
+CRUD for finding new Tweet
+Create 
+t = Tweet.new (will lc, pluralize, find table that matches)
+t.status = "I love brains"
+t.save
+Read
+Tweet.find(3)
+Update
+t = Tweet.find(3)
+t.zombie = "Eyeball Chopmper"
+t.save
+Delete
+t = Tweet.find(3)
+t.destroy
+
+Alternative Syntax for Create
+t = Tweet.new
+t.status = ""
+t.zombie = "Jim"
+t.save
+
+t = Tweet.new(:status => "Brains", :zombie => "Jim")
+t.save
+
+Tweet.create(:status => "Brains", :zombie => "Jim") (create sets attributes and saves object)
+
+Reading alternative syntax
+Tweet.find(2) returns a single item
+Tweet.find(3, 4, 5) returns array
+Tweet.first first
+Tweet.last last
+Tweet.all all
+Tweet.count #returns number of tweets
+tweet.order(:zombie) #all ordered by zombie
+tweet.limit(10) #limits by 10
+Tweet.where(:zombie => "ash") #displays ashes tweets
+Method Chaining
+Tweet.where(:zombie => "ash").order(:zombie).limit(10)
+
+Update
+t = Tweet.find(3)    t.zombie = "EyeballChomper"    t.save # version from above
+t = Tweet.find(2)    t.attributes = {:status => "Brains", :zombie => "EBC" }    t.save
+t = Tweet.find(2)    t.update_attributes(:status => "Brains", :zombie => "EBC") # update_attributes updates and saves
+
+Delete
+t = Tweet.find(2)
+t.destroy
+or t = Tweet.find(2).destroy
+Tweet.destroy_all
+
